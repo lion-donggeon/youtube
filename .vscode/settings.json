@@ -6,6 +6,7 @@
   
       "titleBar.inactiveBackground": "#F54133"
   
-    }
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   
   }

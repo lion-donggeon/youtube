@@ -1,3 +1,8 @@
 git 단축키 내용 : 8-2강 12:32 에 나옴
 
 유튜브 api key : AIzaSyCgyqEAnL9ZSzamKgAcoViaM6jVGjJOQQ4
+
+
+react 프로젝트는 자동으로 git init가 되어 있기 때문에
+바로 
+git remote add 로 깃허브랑 연결하면된다
