@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./app.module.css";
 import SearchHeader from "./components/seach_header/search_header";
 import VideoDetail from "./components/video_detail/video_detail";
@@ -9,16 +9,20 @@ function App({ youtube }) {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const selectVideo = (video) => {
+  const selectVideo = useCallback((video) => {
     setSelectedVideo(video);
-  };
-  const search = (query) => {
-    youtube
-      .search(query) //
-      .then((videos) => setVideos(videos));
+  }, []);
 
-    setSelectedVideo(null);
-  };
+  const search = useCallback(
+    (query) => {
+      youtube
+        .search(query) //
+        .then((videos) => setVideos(videos));
+
+      setSelectedVideo(null);
+    },
+    [youtube]
+  );
 
   // useEffect는 마운트가 되었거나, 업데이트가 될 때 마다 호출 됨
   useEffect(() => {
@@ -28,7 +32,7 @@ function App({ youtube }) {
 
     // 컴포넌트가 업데이트 될 때마다 다시 네트워크 통신을 하지 않기 위해 두번째 인자로 [] 사용, 그럼 마운트가 되었을 때만 호출 됨
     // 상태가 업데이트 될 때 호출 하고 싶으면 [] 배열에 state 이름 넣으면 됨
-  }, []);
+  }, [youtube]);
 
   return (
     <div className={styles.app}>
